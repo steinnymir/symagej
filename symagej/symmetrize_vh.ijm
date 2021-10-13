@@ -1,0 +1,18 @@
+Stack.getDimensions(cols, rows, channels, slices, frames);
+run("Duplicate...", "title=copy.tif duplicate");
+run("Duplicate...", "title=copy-h.tif duplicate");
+run("Flip Horizontally", "stack");
+imageCalculator("Average create stack", "copy.tif","copy-h.tif");
+selectWindow("Result of copy.tif");
+selectWindow("copy-h.tif");
+close();
+selectWindow("copy.tif");
+close();
+run("Duplicate...", "title=[Result of copy-v.tif] duplicate");
+run("Flip Vertically", "stack");
+imageCalculator("Average create stack", "Result of copy.tif","Result of copy-v.tif");
+selectWindow("Result of Result of copy.tif");
+selectWindow("Result of copy-v.tif");
+close();
+selectWindow("Result of copy.tif");
+close();
